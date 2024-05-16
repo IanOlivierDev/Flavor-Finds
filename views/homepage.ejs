@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlavorFinds</title>
+</head>
+<body>
+    <h1>Flavor Finds</h1>
+    <% for (let item of restaurants){%>
+        <li><a href="/<%=item._id%>"><%=item.name%></a></li>
+    <%}%>
+    <a href="/new">Add New Review</a>
+</body>
+</html>
