@@ -16,11 +16,11 @@ connect();
 async function seedDB(){
     try {
         await RestaurantCollection.deleteMany({});
-        let randNum = Math.floor(Math.random() * 50) + 1;
         const randPrice = Math.floor(Math.random() * 50 + 1);
         let randLocation; 
 
         for (let name of restaurantNames){
+            let randNum = Math.floor(Math.random() * 50) + 1;
             randLocation = cities[randNum].city;
             const seed = new RestaurantCollection({
                 name: `${name}`,
