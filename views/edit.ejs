@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+<body>
+    <h1>Edit Entry</h1>
+    <form action="/<%= restaurant._id %>?_method=PUT" method="POST">
+        <!-- Form fields for restaurant details -->
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="restaurant[name]" class="form-control" value="<%= restaurant.name %>" required>
+        </div>
+    
+        <div class="form-group">
+            <label for="image">Image</label>
+            <input type="text" id="image" name="restaurant[image]" class="form-control" value="<%= restaurant.image %>">
+        </div>
+    
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" id="price" name="restaurant[price]" class="form-control" value="<%= restaurant.price %>">
+        </div>
+    
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" id="description" name="restaurant[description]" class="form-control" value="<%= restaurant.description %>">
+        </div>
+    
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" id="location" name="restaurant[location]" class="form-control" value="<%= restaurant.location %>">
+        </div>
+    
+        <button type="submit" class="btn btn-primary">Update Restaurant</button>
+    </form>
+    <a href="/">Cancel</a>
+</body>
+</html>
