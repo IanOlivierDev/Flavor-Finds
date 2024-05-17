@@ -4,12 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlavorFinds</title>
+
+    <style>
+        li{
+            list-style-type: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .container{
+            width: 30%;
+            height: 500px;
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
     <h1>Flavor Finds</h1>
-    <% for (let item of restaurants){%>
-        <li><a href="/<%=item._id%>"><%=item.name%></a></li>
-    <%}%>
+        <% for (let item of restaurants){%>
+            <div class="container">
+                <!-- <a href="/<%=item._id%>"></a> -->
+                <li><%=item.name%></li>
+                <li><%=item.price%></li>
+                <li><%=item.location%></a></li>
+            </div>
+        <%}%>
     <a href="/new">Add New Review</a>
 </body>
 </html>
