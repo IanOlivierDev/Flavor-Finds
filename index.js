@@ -73,6 +73,27 @@ app.delete('/:id', async(req, res) =>{
     }
 });
 
+app.get('/:id/edit', async(req, res) =>{
+    try {
+        const {id} = req.params;
+        const restaurant = await Restaurants.findById(id);
+        res.render('edit', {restaurant});
+    } catch (error) {
+        res.send(error.message);
+    }
+});
+
+app.put('/:id', async(req, res) =>{
+    try {
+        const {id} = req.params;
+        const restaurant = await Restaurants.findByIdAndUpdate(id, {...req.body.restaurant}, {new: true});
+        res.redirect(`/${restaurant.id}`);
+    } catch (error) {
+        res.send(error.message);
+    }
+});
+
+
 app.listen(9000, (req, res) =>{
     console.log("9000: Active");
 });
