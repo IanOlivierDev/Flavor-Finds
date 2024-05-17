@@ -13,16 +13,45 @@
             text-decoration: none;
         }
         .container{
-            width: 30%;
-            height: 500px;
+            width: 50%;
+            height: fit-content;
             border: 1px solid black;
 
             margin: 0 auto;
             margin-bottom: 100px;
+
+            text-align: center;
+            padding: 10px 0;
         }
         img{
-            width: 100%;
+            max-width: 80%;
             max-height: 50%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        h3{
+            font-size: 50px;
+        }
+        
+        .text{
+            width: 60%;
+            margin: 0 auto;
+        }
+        .price{
+            font-size: 25px;
+            margin-top: 0;
+        }
+        .location{
+            padding: 0;
+            margin: 0;
+            font-size: 18px;
+            color: rgb(150, 150, 150);
+        }
+        .block{
+            max-width: 50%;
+            margin: 0 auto;
+            margin-top: 2%;
         }
     </style>
 </head>
@@ -31,10 +60,15 @@
         <% for (let item of restaurants){%>
             <div class="container">
                 <!-- <a href="/<%=item._id%>"></a> -->
-                <li><%=item.name%></li>
-                <img src="<%=item.image%>" alt="">
-                <li><%=item.price%></li>
-                <li><%=item.location%></a></li>
+                <h3><%=item.name%></h3>
+                <img src="<%=item.image%>" alt=""> 
+                <div class="block">
+                    <p class="location"><%=item.location%></p>          
+                    <p class="price">Avg Price: $<%=item.price%></p>
+                </div>  
+                <div class="text">
+                    <p><%=item.description%></p>
+                </div>    
                 <a href="/<%=item._id%>">Edit</a>
             </div>
         <%}%>
