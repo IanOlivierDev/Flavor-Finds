@@ -14,6 +14,10 @@ const Restaurants = require('./models/restaurant');
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
+const { createClient } = require('pexels');
+const client = createClient('E2QAFjO6WPuF3iueYOjA7LlAGpnmIpbee23x2oWfHeZUjV0qn0k1V3ZI');
+
+//Database connection
 async function connect() {
     try {
         await mongoose.connect('mongodb://127.0.0.1:27017/flavorfinds');
@@ -24,6 +28,21 @@ async function connect() {
 }
 connect();
 
+
+//Routes
+// Route to search for photos using Pexels API
+app.get('/search-photos', async (req, res) => {
+    try {
+        const {query = 'restaurants'} = req.query;
+        const response = await client.photos.search({query, per_page: 10});
+        const photos = response.photos.map(photo => photo.src.medium);
+        const alt = response.photos.map(photo => photo.photographer);
+        // res.send(photos);
+        res.render('images', {photos, alt});
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
 
 app.get('/', async (req, res) =>{
     try {
