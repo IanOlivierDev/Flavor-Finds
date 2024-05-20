@@ -1,0 +1,67 @@
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.form-card {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    margin: 0 auto;
+    border: 1px solid lightgoldenrodyellow;
+}
+
+.form-card .form-group {
+    margin-bottom: 15px;
+}
+
+.form-card label {
+    display: block;
+    margin-bottom: 5px;
+    color: lightgoldenrodyellow;
+}
+
+.form-card input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    box-sizing: border-box;
+}
+
+.form-card input:focus {
+    border-color: lightgoldenrodyellow;
+    outline: none;
+    box-shadow: 0 0 5px lightgoldenrodyellow;
+}
+
+.form-card button {
+    background-color: lightgoldenrodyellow;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 16px;
+}
+
+.form-card button:hover {
+    background-color: #dfc07d;
+    transform: scale(1.05);
+}
+
+.form-card button:active {
+    background-color: #bfa55b;
+    transform: scale(1);
+}
