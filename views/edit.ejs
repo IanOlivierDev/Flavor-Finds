@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/edit.css">
+    <link rel="stylesheet" href="/styles/nav.css">
     <title>Edit</title>
 </head>
 <body>
+    <%- include('./partials/navbar')%>
     <div class="form-card">
         <h1>Edit Entry</h1>
         <form action="/<%= restaurant._id %>?_method=PUT" method="POST">

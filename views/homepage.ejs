@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlavorFinds</title>
     <link rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="/styles/nav.css">
 </head>
 <body>
-    <h1>Flavor Finds</h1>
-    <a href="/new">Add New Review</a>
+    <nav class="nav">
+        <h1>Flavor Finds</h1>
+        <a href="/new">Add New Review</a>
+    </nav>
+
+    
         <% for (let item of restaurants){%>
             <div class="container">
                 <!-- <a href="/<%=item._id%>"></a> -->
