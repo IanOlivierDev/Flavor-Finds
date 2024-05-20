@@ -3,11 +3,11 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #e6e6e6;
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
+    margin: 0; */
 }
 
 .card {
@@ -17,8 +17,12 @@ body {
     padding: 20px;
     max-width: 400px;
     width: 100%;
-    margin: 20px;
+    margin-top: 3%;
     text-align: center; /* Center the content inside the card */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .card img.restaurant-image {
