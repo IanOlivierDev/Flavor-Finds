@@ -78,8 +78,8 @@ body {
 
 .btn-back{
     display: block;
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
     background-color: black;
     
     border-radius: 10%;
@@ -89,7 +89,8 @@ body {
     align-items: center;
 
     transition: transform 0.2s, border-radius 0.1s ease-in;
-    margin-bottom: 10%;
+    margin-bottom: 2%;
+    padding: 2px;
 }
 
 .btn-back:hover{
@@ -99,5 +100,13 @@ body {
 
 .cross{
     background-color: black;
-    height: 20px;
+    height: 15px;
+}
+
+.btn-container{
+    width: 100%;
+
+    display: flex;
+    justify-content: right;
+    padding-top: 5px;
 }
