@@ -4,37 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Entry</title>
+    <link rel="stylesheet" href="/styles/new.css">
 </head>
 <body>
-    <h1>New Entry</h1>
-
-    <a href="/">Back to all</a>
-    <form action="/" method="POST">
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" class="form-control" required>
+    <div class="form-card">
+        <div class="close">
+            <a href="/" class="btn-back"><img class="cross" src="/icons/close.png" alt=""></a>
         </div>
-        
-        <div class="form-group">
-            <label for="image">Image</label>
-            <input type="text" id="image" name="image" class="form-control">
-        </div>
-        
-        <div class="form-group">
-            <label for="price">Price</label>
-            <input type="number" id="price" name="price" class="form-control">
-        </div>
-        
-        <div class="form-group">
-            <label for="description">Description</label>
-            <input type="text" id="description" name="description" class="form-control">
-        </div>
-        
-        <div class="form-group">
-            <label for="location">Location</label>
-            <input type="text" id="location" name="location" class="form-control">
-        </div>
-        <button>Submit</button>
-    </form>
+        <h2>New Entry</h2>
+        <form action="/" method="POST">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input type="text" id="image" name="image" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" id="price" name="price" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" id="description" name="description" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" class="form-control" required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </body>
 </html>

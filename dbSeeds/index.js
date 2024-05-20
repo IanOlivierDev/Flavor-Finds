@@ -19,15 +19,15 @@ connect();
 async function seedDB(){
     try {
         await RestaurantCollection.deleteMany({});
-        const randPrice = Math.floor(Math.random() * 50 + 1);
         let randLocation; 
 
         const response = await client.photos.search({query: 'restaurants', per_page: 50});
-        const photos = response.photos.map(photo => photo.src.orignal);
+        const photos = response.photos.map(photo => photo.src.medium);
         const alt = response.photos.map(photo => photo.photographer);
 
         for (let name of restaurantNames){
             let randNum = Math.floor(Math.random() * 50) + 1;
+            let randPrice = Math.floor(Math.random() * 50 + 1);
             randLocation = cities[randNum].city;
             const seed = new RestaurantCollection({
                 name: `${name}`,

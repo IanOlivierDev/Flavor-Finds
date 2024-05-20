@@ -1,0 +1,86 @@
+body{
+    background-color: #e6e6e6;
+}
+
+li{
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+}
+.container{
+    width: 50%;
+    height: fit-content;
+    border-radius: 10px;
+
+    margin: 0 auto;
+    margin-bottom: 5%;
+
+    text-align: center;
+    padding: 10px 0;
+
+    background-color: white;
+}
+img{
+    max-width: 80%;
+    max-height: 50%;
+    border-radius: 5px;
+    margin-bottom: 5%;
+}
+
+h3{
+    font-size: 50px;
+    margin-bottom: 1%;
+    letter-spacing: 1px;
+}
+
+.text{
+    width: 60%;
+    margin: 0 auto;
+}
+.price{
+    font-size: 25px;
+    margin-top: 0;
+    color: rgb(216, 184, 0);
+}
+
+.location{
+    padding: 0;
+    margin: 0;
+    font-size: 25px;
+    color: rgb(150, 150, 150);
+    margin-bottom: 10%;
+    letter-spacing: 1px;
+}
+
+.description{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
+
+.block{
+    max-width: 50%;
+    margin: 0 auto;
+    margin-top: 2%;
+}
+
+.btn{
+    background-color: black;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 16px; 
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: background-color 0.2s ease-in;
+}
+
+.btn-container{
+    margin-top: 10%;
+    margin-bottom: 25px;
+}
+
+.btn:hover{
+    background-color: green;
+}

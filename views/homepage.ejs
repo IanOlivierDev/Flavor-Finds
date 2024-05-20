@@ -4,40 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlavorFinds</title>
-
-    <style>
-        li{
-            list-style-type: none;
-        }
-        a{
-            text-decoration: none;
-        }
-        .container{
-            width: 30%;
-            height: 500px;
-            border: 1px solid black;
-
-            margin: 0 auto;
-            margin-bottom: 100px;
-        }
-        img{
-            width: 100%;
-            max-height: 50%;
-        }
-    </style>
+    <link rel="stylesheet" href="/styles/home.css">
 </head>
 <body>
     <h1>Flavor Finds</h1>
+    <a href="/new">Add New Review</a>
         <% for (let item of restaurants){%>
             <div class="container">
                 <!-- <a href="/<%=item._id%>"></a> -->
-                <li><%=item.name%></li>
-                <img src="<%=item.image%>" alt="">
-                <li><%=item.price%></li>
-                <li><%=item.location%></a></li>
-                <a href="/<%=item._id%>">Edit</a>
+                <h3><%=item.name%></h3>
+                <p class="location"><%=item.location%></p>          
+                <img src="<%=item.image%>" alt=""> 
+                <div class="block">
+                    <p class="price">Avg Price: $<%=item.price%></p>
+                </div>  
+                <div class="text">
+                    <p class="description"><%=item.description%></p>
+                </div>   
+                <div class="btn-container">
+                    <a href="/<%=item._id%>" class="btn">See More</a>
+                </div> 
             </div>
         <%}%>
-    <a href="/new">Add New Review</a>
 </body>
 </html>
