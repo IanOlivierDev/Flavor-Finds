@@ -2,7 +2,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #e6e6e6;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,7 +12,7 @@ body {
 
 .card {
     background-color: #fff;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     max-width: 400px;
@@ -51,7 +51,6 @@ body {
 }
 .price{
     margin-top: 5%;
-
     margin-bottom: 3%;
     font-weight: 600;
     font-size: 18px;
@@ -82,7 +81,7 @@ body {
     height: 50px;
     width: 50px;
     background-color: black;
-
+    
     border-radius: 10%;
 
     display: flex;
@@ -90,6 +89,7 @@ body {
     align-items: center;
 
     transition: transform 0.2s, border-radius 0.1s ease-in;
+    margin-bottom: 10%;
 }
 
 .btn-back:hover{
