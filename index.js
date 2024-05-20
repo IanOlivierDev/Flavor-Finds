@@ -17,6 +17,9 @@ app.use(methodOverride('_method'));
 const { createClient } = require('pexels');
 const client = createClient('E2QAFjO6WPuF3iueYOjA7LlAGpnmIpbee23x2oWfHeZUjV0qn0k1V3ZI');
 
+// Serve static files
+app.use(express.static(path.join(__dirname, 'public')));
+
 //Database connection
 async function connect() {
     try {

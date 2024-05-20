@@ -3,18 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Details</title>
+    <title>Restaurant Details</title>
+    <link rel="stylesheet" href="/styles/details.css">
 </head>
 <body>
-    <h3><%=restaurant.name%></h1>
-    <li><%=restaurant.location%></li>
-    <li><%=restaurant.price%></li>
-    <li><%=restaurant.description%></li>
-
-    <form action="/<%=restaurant._id%>?_method=DELETE" method="post">
-        <button>Delete</button>
-    </form>
-    <a href="/">Back to All</a>
-    <a href="/<%=restaurant._id%>/edit">Edit Entry</a>
+    <body>
+        <div class="card">
+            <a href="/" class="btn-back"><img class="cross" src="/icons/close.png" alt=""></a>
+            
+            <img src="<%= restaurant.image %>" alt="<%= restaurant.name %>" class="restaurant-image">
+            <h3><%= restaurant.name %></h3>
+            <ul>
+                <li class="location"><%= restaurant.location %></li>
+                <li class="price">AVG Price: $<%= restaurant.price %></li>
+                <li class="description"><%= restaurant.description %></li>
+            </ul>
+            <a href="/<%= restaurant._id %>/edit" class="btn">Edit Entry</a>
+            <form action="/<%= restaurant._id %>?_method=DELETE" method="post">
+                <button class="btn brn-delete">Delete</button>
+            </form>
+        </div>
 </body>
 </html>
