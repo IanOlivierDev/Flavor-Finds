@@ -80,7 +80,7 @@ app.post('/', async(req, res) => {
 app.get('/:id', async(req, res) =>{
     try {
         const {id} = req.params;
-        const restaurant = await Restaurants.findById(id);
+        const restaurant = await Restaurants.findById(id).populate('reviews');
         res.render('details', {restaurant});
     } catch (error) {
         res.send(error.message);
@@ -117,6 +117,33 @@ app.put('/:id', async(req, res) =>{
     }
 });
 
+
+app.post('/:id/reviews', async(req, res) => {
+    try {
+        const {id} = req.params;
+        const restaurant = await Restaurants.findById(id);
+        const review = new Reviews(req.body.review);
+        //Push review form data into the reviews array in the reviews model
+        restaurant.reviews.push(review);
+        await review.save();
+        await restaurant.save();
+        res.redirect(`/${id}`);
+    } catch (error) {
+        res.send(error.message);
+    }
+});
+
+app.delete('/:id/reviews/:reviewID', async(req, res) =>{
+    try {
+        const {id, reviewID} = req.params;
+        //Fidn entry by ID and and update the reviews colletion by removing the specified reviewID
+        await Restaurants.findByIdAndUpdate(id, {$pull: {reviewID}});
+        await Reviews.findByIdAndDelete(reviewID);
+        res.redirect(`/${id}`);
+    } catch (error) {
+        res.send(error.message);
+    }
+});
 
 app.listen(9000, (req, res) =>{
     console.log("9000: Active");

@@ -8,23 +8,48 @@
     <link rel="stylesheet" href="/styles/nav.css">
 </head>
 <body>
-    <body>
-        <%- include('./partials/navbar')%>
-        <div class="card">
-            <div class="btn-container">
-                <a href="/" class="btn-back"><img class="cross" src="/icons/close.png" alt=""></a>
-            </div>
-            <img src="<%= restaurant.image %>" alt="<%= restaurant.name %>" class="restaurant-image">
-            <h3><%= restaurant.name %></h3>
-            <ul>
-                <li class="location"><%= restaurant.location %></li>
-                <li class="price">AVG Price: $<%= restaurant.price %></li>
-                <li class="description"><%= restaurant.description %></li>
-            </ul>
-            <a href="/<%= restaurant._id %>/edit" class="btn">Edit Entry</a>
-            <form action="/<%= restaurant._id %>?_method=DELETE" method="post">
-                <button class="btn brn-delete">Delete</button>
-            </form>
+    <%- include('./partials/navbar') %>
+    <div class="card">
+        <div class="btn-container">
+            <a href="/" class="btn-back">
+                <img class="cross" src="/icons/close.png" alt="Back">
+            </a>
         </div>
+        <img src="<%= restaurant.image %>" alt="<%= restaurant.name %>" class="restaurant-image">
+        <h3><%= restaurant.name %></h3>
+        <ul>
+            <li class="location"><%= restaurant.location %></li>
+            <li class="price">AVG Price: $<%= restaurant.price %></li>
+            <li class="description"><%= restaurant.description %></li>
+        </ul>
+        <a href="/<%= restaurant._id %>/edit" class="btn">Edit Entry</a>
+        <form action="/<%= restaurant._id %>?_method=DELETE" method="post">
+            <button class="btn btn-delete">Delete</button>
+        </form>
+        <div class="reviews">
+            <form action="/<%= restaurant._id %>/reviews" method="post">
+                <div class="rating-container">
+                    <label for="rating">Rating</label>
+                    <input type="range" id="rating" min="1" max="5" name="review[rating]">
+                </div>
+                <div>
+                    <label for="comments">Comments</label>
+                    <textarea name="review[comments]" id="comments" cols="30" rows="3"></textarea>
+                </div>
+                <button>Add Review</button>
+            </form>
+            <div class="reviews-display">
+                <% for (let review of restaurant.reviews) { %>
+                    <div class="review-card">
+                        <h2><%= review.rating %></h2>
+                        <p><%= review.comments %></p>
+                        <form action="/<%= restaurant._id %>/reviews/<%= review._id %>?_method=DELETE" method="post">
+                            <button>Delete</button>
+                        </form>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
