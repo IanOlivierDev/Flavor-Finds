@@ -9,7 +9,9 @@ app.set('views', path.join(__dirname, 'views'))
 
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
+
 const Restaurants = require('./models/restaurant');
+const Reviews = require('./models/reviews');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
