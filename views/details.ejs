@@ -9,6 +9,7 @@
 </head>
 <body>
     <%- include('./partials/navbar') %>
+    <div class="main">
     <div class="card">
         <div class="btn-container">
             <a href="/" class="btn-back">
@@ -27,6 +28,7 @@
             <button class="btn btn-delete">Delete</button>
         </form>
         <div class="reviews">
+            <h3>Add Review</h3>
             <form action="/<%= restaurant._id %>/reviews" method="post">
                 <div class="rating-container">
                     <label for="rating">Rating</label>
@@ -39,8 +41,10 @@
                 <button>Add Review</button>
             </form>
             <div class="reviews-display">
+                <h3>Reviews</h3>
                 <% for (let review of restaurant.reviews) { %>
                     <div class="review-card">
+                        <h2>Rating:</h2>
                         <h2><%= review.rating %></h2>
                         <p><%= review.comments %></p>
                         <form action="/<%= restaurant._id %>/reviews/<%= review._id %>?_method=DELETE" method="post">
@@ -51,5 +55,6 @@
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>

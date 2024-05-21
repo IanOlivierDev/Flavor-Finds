@@ -3,6 +3,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #e6e6e6;
+    width: 100%;
     /* display: flex;
     justify-content: center;
     align-items: center;
@@ -10,26 +11,32 @@ body {
     margin: 0; */
 }
 
+.main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .card {
     background-color: #fff;
     border-radius: 10px;
+    max-width: 80%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    max-width: 400px;
-    width: 100%;
-    margin-top: 3%;
     text-align: center; /* Center the content inside the card */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .card img.restaurant-image {
-    max-width: 100%;
+    max-height: 400px;
     height: auto;
     border-radius: 8px;
     margin-bottom: 20px; /* Space between image and text */
+    box-shadow: 2px 9px 38px -8px rgba(0,0,0,0.75);
+    margin-bottom: 5%;
 }
 
 .card h3 {
@@ -113,4 +120,35 @@ body {
     display: flex;
     justify-content: right;
     padding-top: 5px;
+}
+
+.review-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.review-card h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.review-card p {
+    margin-bottom: 15px;
+}
+
+.review-card form {
+    display: flex;
+    justify-content: center;
+}
+
+.review-card button {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }
