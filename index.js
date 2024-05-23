@@ -22,6 +22,20 @@ const client = createClient('E2QAFjO6WPuF3iueYOjA7LlAGpnmIpbee23x2oWfHeZUjV0qn0k
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Express-Session
+const session = require("express-session");
+const config = {
+    secret: "flavorfinds",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+}
+app.use(session(config));
+
 //Database connection
 async function connect() {
     try {
