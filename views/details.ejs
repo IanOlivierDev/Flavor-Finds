@@ -9,6 +9,12 @@
 </head>
 <body>
     <%- include('./partials/navbar') %>
+    <% if (success.length > 0) { %>
+        <script>
+            // Call the showPrompt function with the flash message
+            alert("<%= success[0] %>");
+        </script>
+    <% } %>
     <div class="main">
     <div class="card">
         <div class="btn-container">
