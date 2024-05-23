@@ -36,6 +36,16 @@ const config = {
 }
 app.use(session(config));
 
+//Connect-Flash
+const flash = require('connect-flash');
+app.use(flash());
+
+app.use((req, res, next) =>{
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+});
+
 //Database connection
 async function connect() {
     try {
@@ -85,7 +95,8 @@ app.post('/', async(req, res) => {
         const data = req.body;
         const newEntry = new Restaurants(data);
         await newEntry.save();
-        res.redirect('/');
+        req.flash('success', 'Added a new review!');
+        res.redirect(`/${newEntry._id}`);
     } catch (error) {
         res.send(error.message);
     }
@@ -105,6 +116,7 @@ app.delete('/:id', async(req, res) =>{
     try {
         const {id} = req.params;
         await Restaurants.findByIdAndDelete(id);
+        req.flash('success', 'Entry Deleted');
         res.redirect('/');
     } catch (error) {
         res.send(error.message);
@@ -125,6 +137,7 @@ app.put('/:id', async(req, res) =>{
     try {
         const {id} = req.params;
         const restaurant = await Restaurants.findByIdAndUpdate(id, {...req.body.restaurant}, {new: true});
+        req.flash('success', 'Success');
         res.redirect(`/${restaurant.id}`);
     } catch (error) {
         res.send(error.message);
@@ -150,7 +163,7 @@ app.post('/:id/reviews', async(req, res) => {
 app.delete('/:id/reviews/:reviewID', async(req, res) =>{
     try {
         const {id, reviewID} = req.params;
-        //Fidn entry by ID and and update the reviews colletion by removing the specified reviewID
+        //Find entry by ID and and update the reviews colletion by removing the specified reviewID
         await Restaurants.findByIdAndUpdate(id, {$pull: {reviewID}});
         await Reviews.findByIdAndDelete(reviewID);
         res.redirect(`/${id}`);
