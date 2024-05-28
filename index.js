@@ -10,12 +10,22 @@ app.set('views', path.join(__dirname, 'views'))
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 
+//Models
 const Restaurants = require('./models/restaurant');
 const Reviews = require('./models/reviews');
+const User = require('./models/user');
+
+//Routes
+const userRoutes = require('./routes/auth');
+
+//Passport
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
+//Pexels image API
 const { createClient } = require('pexels');
 const client = createClient('E2QAFjO6WPuF3iueYOjA7LlAGpnmIpbee23x2oWfHeZUjV0qn0k1V3ZI');
 
@@ -30,11 +40,19 @@ const config = {
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
-        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-        maxAge: 1000 * 60 * 60 * 24 * 7
+        expires: Date.now() + 1000 * 60 * 60,
+        maxAge: 1000 * 60 * 60
     }
 }
 app.use(session(config));
+
+
+//Passport setup
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 //Connect-Flash
 const flash = require('connect-flash');
@@ -45,6 +63,9 @@ app.use((req, res, next) =>{
     res.locals.error = req.flash('error');
     next();
 });
+
+//Routes
+app.use('/', userRoutes);
 
 //Database connection
 async function connect() {
@@ -70,6 +91,20 @@ app.get('/search-photos', async (req, res) => {
         res.render('images', {photos, alt});
     } catch (error) {
         res.status(500).send(error.message);
+    }
+});
+
+//Passport
+app.get('/fake', async(req, res) =>{
+    try {
+        const user = new User({
+            email: 'example@example.com',
+            username: 'example'         
+        });
+        const registeredUser = await User.register(user, 'passwordExample');
+        res.send(registeredUser);
+    } catch (error) {
+        res.send(error.message);
     }
 });
 
