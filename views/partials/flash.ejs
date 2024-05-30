@@ -5,4 +5,11 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-<% } %>
+<% } else if(error.length > 0){%>
+    <div class="alert alert-danger alert-dismissible fade show custom-alert" role="alert" role="alert">
+        <%= error%>
+        <button type="button" class="close" type="button" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<%}%>
