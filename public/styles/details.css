@@ -11,10 +11,12 @@ body {
     margin: 0; */
 }
 
-.main{
+main{
     display: flex;
     align-items: center;
     justify-content: center;
+    max-width: 70%;
+    margin: 0 auto;
 }
 
 .card {
@@ -31,17 +33,12 @@ body {
 }
 
 .card img.restaurant-image {
-    max-height: 400px;
+    max-width: 80%;
     height: auto;
     border-radius: 8px;
-    margin-bottom: 20px; /* Space between image and text */
     box-shadow: 2px 9px 38px -8px rgba(0,0,0,0.75);
     margin-bottom: 5%;
-}
-
-.card h3 {
-    margin: 0;
-    font-size: 25px;
+    margin-top: 10px;
 }
 
 .card ul {
@@ -58,7 +55,7 @@ body {
 .location{
     color: rgb(139, 139, 139);
     font-size: 18px;
-    margin-top: 2%;
+    margin-top: 1%;
 }
 .price{
     margin-top: 5%;
@@ -68,7 +65,7 @@ body {
     color: red;
 }
 .description{
-    max-width: 70%;
+    max-width: 50%;
     margin: 0 auto;
 }
 .btn {
@@ -81,10 +78,12 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.1s, transform 0.1s;
+    margin-top: 10px;
 }
 
 .btn:hover{
     background-color: #333;
+    color: white;
 }
 
 .btn-back{
@@ -104,11 +103,6 @@ body {
     padding: 2px;
 }
 
-.btn-back:hover{
-    transform: scale(1.05);
-    border-radius: 50%;
-}
-
 .cross{
     background-color: black;
     height: 15px;
@@ -120,6 +114,10 @@ body {
     display: flex;
     justify-content: right;
     padding-top: 5px;
+}
+
+.reviews-display, .reviews{
+    margin-top: 50px;
 }
 
 .review-card {
@@ -151,4 +149,14 @@ body {
     color: #fff;
     border: none;
     cursor: pointer;
+}
+
+
+/* Text Styles */
+.name{
+    font-size: 50px;
+}
+
+.review-header{
+    margin-bottom: 20px;
 }
