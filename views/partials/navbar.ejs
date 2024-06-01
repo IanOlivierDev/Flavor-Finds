@@ -1,8 +1,12 @@
 <nav class="nav">
     <a href="/">FlavorFinds</a>
     <div>
-        <a class="new" href="/new">Add New Entry</a>
-        <a class='register' href="/register">Sign-up</a>
-        <a class='register' href="/login">Login</a>
+        <%if (!currentUser){%>
+            <a class='register' href="/login">Login</a>
+            <a class='register' href="/register">Sign-up</a>
+        <%} else{%>
+            <a class="new" href="/new">Add New Entry</a>
+            <a class="register" href="/logout">Logout</a>
+        <%}%>
     </div>
 </nav>
