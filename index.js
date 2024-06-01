@@ -18,6 +18,9 @@ const User = require('./models/user');
 //Routes
 const userRoutes = require('./routes/auth');
 
+
+//Middleware
+const {isLoggedIn} = require('./middlewear/middleware');
 //Passport
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
@@ -117,18 +120,20 @@ app.get('/', async (req, res) =>{
     }
 });
 
-app.get('/new', (req, res) =>{
-    try {
-        if (req.isAuthenticated()){
-            res.render('new');
-        } else{
-            req.flash('error', `Please Login First!`);
-            res.redirect('/login');
-        }
-    } catch (error) {
-        req.flash('error', `${error.message}`);
-        res.redirect('/');
-    }
+app.get('/new', isLoggedIn, (req, res) =>{
+    // try {
+    //     if (req.isAuthenticated()){
+    //         res.render('new');
+    //     } else{
+    //         req.flash('error', `Please Login First!`);
+    //         res.redirect('/login');
+    //     }
+    // } catch (error) {
+    //     req.flash('error', `${error.message}`);
+    //     res.redirect('/');
+    // }
+
+    res.render('new');
 });
 
 app.post('/', async(req, res) => {
@@ -136,7 +141,7 @@ app.post('/', async(req, res) => {
         const data = req.body;
         const newEntry = new Restaurants(data);
         await newEntry.save();
-        req.flash('success', 'Added a new review!');
+        req.flash('success', 'Added a new Restaurant!');
         res.redirect(`/${newEntry._id}`);
     } catch (error) {
         res.send(error.message);
@@ -153,7 +158,7 @@ app.get('/:id', async(req, res) =>{
     }
 });
 
-app.delete('/:id', async(req, res) =>{
+app.delete('/:id', isLoggedIn, async(req, res) =>{
     try {
         const {id} = req.params;
         await Restaurants.findByIdAndDelete(id);
@@ -164,7 +169,7 @@ app.delete('/:id', async(req, res) =>{
     }
 });
 
-app.get('/:id/edit', async(req, res) =>{
+app.get('/:id/edit', isLoggedIn, async(req, res) =>{
     try {
         const {id} = req.params;
         const restaurant = await Restaurants.findById(id);
@@ -186,7 +191,7 @@ app.put('/:id', async(req, res) =>{
 });
 
 
-app.post('/:id/reviews', async(req, res) => {
+app.post('/:id/reviews',isLoggedIn, async(req, res) => {
     try {
         const {id} = req.params;
         const restaurant = await Restaurants.findById(id);
@@ -201,7 +206,7 @@ app.post('/:id/reviews', async(req, res) => {
     }
 });
 
-app.delete('/:id/reviews/:reviewID', async(req, res) =>{
+app.delete('/:id/reviews/:reviewID', isLoggedIn, async(req, res) =>{
     try {
         const {id, reviewID} = req.params;
         //Find entry by ID and and update the reviews colletion by removing the specified reviewID
