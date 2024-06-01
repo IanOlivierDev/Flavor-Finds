@@ -141,7 +141,7 @@ app.post('/', async(req, res) => {
         const data = req.body;
         const newEntry = new Restaurants(data);
         await newEntry.save();
-        req.flash('success', 'Added a new review!');
+        req.flash('success', 'Added a new Restaurant!');
         res.redirect(`/${newEntry._id}`);
     } catch (error) {
         res.send(error.message);
