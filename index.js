@@ -62,6 +62,7 @@ const flash = require('connect-flash');
 app.use(flash());
 
 app.use((req, res, next) =>{
+    res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
@@ -141,7 +142,7 @@ app.post('/', async(req, res) => {
         const data = req.body;
         const newEntry = new Restaurants(data);
         await newEntry.save();
-        req.flash('success', 'Added a new Restaurant!');
+        req.flash('success', 'Added a new Restaurant Review!');
         res.redirect(`/${newEntry._id}`);
     } catch (error) {
         res.send(error.message);

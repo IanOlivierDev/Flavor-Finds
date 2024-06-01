@@ -26,7 +26,7 @@ router.post('/register', async (req, res) =>{
 
 router.get('/login', async(req, res) =>{
     try {
-        res.render('login');
+        res.render('login', {isAuthenticated: req.isAuthenticated()});
     } catch (error) {
         req.flash('error',`${error.message}`);
         res.redirect('/login');
@@ -42,5 +42,15 @@ router.post('/login', passport.authenticate('local', {failureFlash: true, failur
         res.redirect('/login');
     }
 }));
+
+router.get('/logout', (req, res) =>{
+    req.logout((err) => {
+        if (err) {
+            return next(err);
+        }
+        req.flash('success', 'You have logged out successfully.');
+        res.redirect('/');
+    });
+});
 
 module.exports = router;
