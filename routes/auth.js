@@ -29,6 +29,7 @@ router.get('/login', async(req, res) =>{
         res.render('login');
     } catch (error) {
         req.flash('error',`${error.message}`);
+        res.redirect('/login');
     }
 });
 
