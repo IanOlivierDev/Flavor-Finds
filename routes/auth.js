@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const passport = require('passport');
 
 router.get('/register', (req, res) =>{
     try {
@@ -22,5 +23,24 @@ router.post('/register', async (req, res) =>{
         res.redirect('/register');
     }
 });
+
+router.get('/login', async(req, res) =>{
+    try {
+        res.render('login');
+    } catch (error) {
+        req.flash('error',`${error.message}`);
+        res.redirect('/login');
+    }
+});
+
+router.post('/login', passport.authenticate('local', {failureFlash: true, failureRedirect: '/login'}), (async(req, res) =>{
+    try {
+        req.flash('success', 'Signed in!');
+        res.redirect('/');
+    } catch (error) {
+        req.flash('error',`${error.message}`);
+        res.redirect('/login');
+    }
+}));
 
 module.exports = router;

@@ -119,9 +119,15 @@ app.get('/', async (req, res) =>{
 
 app.get('/new', (req, res) =>{
     try {
-        res.render('new');
+        if (req.isAuthenticated()){
+            res.render('new');
+        } else{
+            req.flash('error', `Please Login First!`);
+            res.redirect('/login');
+        }
     } catch (error) {
-        res.send(error.message);
+        req.flash('error', `${error.message}`);
+        res.redirect('/');
     }
 });
 
