@@ -49,9 +49,12 @@
         <h3 class="name"><%= restaurant.name %></h3>
         <ul>
             <li class="location"><%= restaurant.location %></li>
+            <li class="location">Posted by <%= restaurant.author.username %></li>
             <li class="price">AVG Price: $<%= restaurant.price %></li>
             <li class="description"><%= restaurant.description %></li>
         </ul>
+
+        <%if (currentUser && restaurant.author.equals(currentUser._id)) {%>
         <a href="/<%= restaurant._id %>/edit" class="btn">Edit Entry</a>
         <form action="/<%= restaurant._id %>?_method=DELETE" method="post">
             <button class="btn btn-delete">Delete</button>
@@ -69,6 +72,7 @@
                 </div>
                 <button class="btn">Add Review</button>
             </form>
+            <%}%>
             <div class="reviews-display">
                 <h3>Reviews</h3>
                 <% for (let review of restaurant.reviews) { %>

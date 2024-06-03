@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const cities = require('./cities');
 const {restaurantNames} = require('./names');
 const RestaurantCollection = require('../models/restaurant');
+const Reviews = require('../models/reviews');
+const User = require('../models/user');
 
 const { createClient } = require('pexels');
 const client = createClient('E2QAFjO6WPuF3iueYOjA7LlAGpnmIpbee23x2oWfHeZUjV0qn0k1V3ZI');
@@ -30,6 +32,7 @@ async function seedDB(){
             let randPrice = Math.floor(Math.random() * 50 + 1);
             randLocation = cities[randNum].city;
             const seed = new RestaurantCollection({
+                author: '665d92745f26e64924399602',
                 name: `${name}`,
                 image: photos[randNum],
                 price: randPrice,

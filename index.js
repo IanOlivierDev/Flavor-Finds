@@ -59,6 +59,8 @@ passport.deserializeUser(User.deserializeUser());
 
 //Connect-Flash
 const flash = require('connect-flash');
+const { log } = require('console');
+const restaurant = require('./models/restaurant');
 app.use(flash());
 
 app.use((req, res, next) =>{
@@ -141,6 +143,7 @@ app.post('/', async(req, res) => {
     try {
         const data = req.body;
         const newEntry = new Restaurants(data);
+        newEntry.author = req.user.id;
         await newEntry.save();
         req.flash('success', 'Added a new Restaurant Review!');
         res.redirect(`/${newEntry._id}`);
@@ -152,7 +155,7 @@ app.post('/', async(req, res) => {
 app.get('/:id', async(req, res) =>{
     try {
         const {id} = req.params;
-        const restaurant = await Restaurants.findById(id).populate('reviews');
+        const restaurant = await Restaurants.findById(id).populate('reviews').populate('author');
         res.render('details', {restaurant});
     } catch (error) {
         res.send(error.message);
@@ -174,6 +177,10 @@ app.get('/:id/edit', isLoggedIn, async(req, res) =>{
     try {
         const {id} = req.params;
         const restaurant = await Restaurants.findById(id);
+        if (!restaurant.author.equals(req.user._id)){
+            req.flash('error', 'Incorrect Permissions');
+            return res.redirect(`/${id}`);
+        }
         res.render('edit', {restaurant});
     } catch (error) {
         res.send(error.message);
@@ -183,7 +190,7 @@ app.get('/:id/edit', isLoggedIn, async(req, res) =>{
 app.put('/:id', async(req, res) =>{
     try {
         const {id} = req.params;
-        const restaurant = await Restaurants.findByIdAndUpdate(id, {...req.body.restaurant}, {new: true});
+        const  restaurant = await Restaurants.findByIdAndUpdate(id, {...req.body.restaurant}, {new: true});
         req.flash('success', 'Success');
         res.redirect(`/${restaurant.id}`);
     } catch (error) {
