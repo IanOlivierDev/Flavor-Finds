@@ -205,6 +205,7 @@ app.post('/:id/reviews',isLoggedIn, async(req, res) => {
         const restaurant = await Restaurants.findById(id);
         const review = new Reviews(req.body.review);
         //Push review form data into the reviews array in the reviews model
+        review.author = req.user.id;
         restaurant.reviews.push(review);
         await review.save();
         await restaurant.save();
