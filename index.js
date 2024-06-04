@@ -155,7 +155,12 @@ app.post('/', async(req, res) => {
 app.get('/:id', async(req, res) =>{
     try {
         const {id} = req.params;
-        const restaurant = await Restaurants.findById(id).populate('reviews').populate('author');
+        const restaurant = await Restaurants.findById(id).populate({
+            path: 'reviews',
+            populate: {
+                path: 'author',
+                model: 'User'
+            }}).populate('author');
         res.render('details', {restaurant});
     } catch (error) {
         res.send(error.message);
