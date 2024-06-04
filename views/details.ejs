@@ -80,9 +80,14 @@
                 <% for (let review of restaurant.reviews) { %>
                     <div class="review-card">
                         <h2>Rating:</h2>
+                        <% if (review.author) { %>
+                            <p>By <%= review.author.username %></p> <!-- Displaying the author's name -->
+                        <% } else { %>
+                            <p>By Unknown</p>
+                        <% } %>
                         <h2><%= review.rating %></h2>
                         <p><%= review.comments %></p>
-                        <%if (currentUser && review.author.equals(currentUser._id)) {%>
+                        <p><%if (currentUser && review.author && review.author._id.toString() === currentUser._id.toString()) {%>
                         <form action="/<%= restaurant._id %>/reviews/<%= review._id %>?_method=DELETE" method="post">
                             <button>Delete</button>
                         </form>
